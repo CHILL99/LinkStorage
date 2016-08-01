@@ -1,0 +1,12 @@
+%h1 Bookmarks#index
+%table
+  %tr
+    %th Bookmark
+    %th Description
+    %th Tags
+  - @bookmarks.each do |bookmark|
+    %tr
+      %td= bookmark.bookmark
+      %td= bookmark.description
+      %td= bookmark.all_tags
+= link_to 'New Bookmark', new_bookmark_path
