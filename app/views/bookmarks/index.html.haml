@@ -8,5 +8,5 @@
     %tr
       %td= bookmark.bookmark
       %td= bookmark.description
-      %td= bookmark.all_tags
+      %td= raw tag_links(bookmark.all_tags)
 = link_to 'New Bookmark', new_bookmark_path
