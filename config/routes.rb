@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
+  devise_scope :user do
+    authenticated :user do
+      root 'bookmarks#index', as: :authenticated_root
+    end
+
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
+
   devise_for :users
+  resources :bookmarks
+  get 'tags/:tag', to: 'bookmarks#index', as: "tag"
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
