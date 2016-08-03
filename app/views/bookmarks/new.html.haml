@@ -1,6 +1,3 @@
-%h1 New Bookmark
-= simple_form_for @bookmark do |f|
-  = f.input :bookmark
-  = f.input :description, required: false
-  = f.input :all_tags
-  = f.button :submit
+%h1.text-center New Bookmark
+.row
+  = render 'shared/bookmark_form', method: :post

@@ -1,9 +1,9 @@
 class BookmarksController < ApplicationController
   def index
-    if params[:tag]
-      @bookmarks = Bookmark.tagged_with(params[:tag])
+    @bookmarks = if params[:tag]
+      current_user.bookmarks.tagged_with(params[:tag], current_user)
     else
-      @bookmarks = Bookmark.all
+      current_user.bookmarks
     end
   end
   
@@ -13,12 +13,33 @@ class BookmarksController < ApplicationController
 
   def create
     @bookmark = Bookmark.new (bookmark_params)
-    @bookmark.save
+    @bookmark.user = current_user
+    if @bookmark.save
+      redirect_to bookmarks_path
+    else
+      render :new
+    end
+  end
+
+  def edit
+    @bookmark = Bookmark.find(params[:id])
+    render :edit
+  end
+
+  def update
+    @bookmark = Bookmark.find(params[:id])
+    @bookmark.update(bookmark_params)
+    redirect_to bookmarks_path
+  end
+
+  def destroy
+    @bookmark = Bookmark.find(params[:id])
+    @bookmark.destroy
     redirect_to bookmarks_path
   end
 
   private
     def bookmark_params
-      params.require(:bookmark).permit(:bookmark, :description, :all_tags)
+      params.require(:bookmark).permit(:content, :description, :all_tags)
     end
 end
