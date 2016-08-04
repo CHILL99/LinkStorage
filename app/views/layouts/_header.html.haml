@@ -1,8 +1,13 @@
 %nav.navbar.navbar-default
   .container-fluid 
     .navbar-brand LinkStorage 
-    %ul.nav.navbar-nav.navbar-right
-      - if user_signed_in?
+    - if user_signed_in?
+      %ul.nav.navbar-nav.navbar-left
+        %li
+          =link_to "My bookmarks", authenticated_root_path
+        %li
+          =link_to "My tags", tags_path
+      %ul.nav.navbar-nav.navbar-right
         %li
           = link_to "Logout", destroy_user_session_path, method: :delete
 
