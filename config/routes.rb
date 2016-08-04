@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   devise_scope :user do
     authenticated :user do
       root 'bookmarks#index', as: :authenticated_root
@@ -12,7 +11,6 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :bookmarks
-  resources :tags, only: [:index]
   get 'tags/:tag', to: 'bookmarks#index', as: "tag"
   
   # The priority is based upon order of creation: first created -> highest priority.
