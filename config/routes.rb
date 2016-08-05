@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_scope :user do
     authenticated :user do
       root 'bookmarks#index', as: :authenticated_root
