@@ -1,6 +1,6 @@
 .row
   .col-lg-6.col-lg-offset-3
-    = simple_form_for @bookmark do |f|
+    = simple_form_for bookmark do |f|
       = f.input :content, placeholder: "Paste your link here"
       = f.input :all_tags, label: "Tags", placeholder: "Enter tags separated with comma"
       = f.input :description, required: false, as: :text, placeholder: "Enter short description"

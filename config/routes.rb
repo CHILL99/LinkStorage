@@ -11,9 +11,8 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  resources :bookmarks
-  resources :tags, only: [:index]
-  get 'tags/:tag', to: 'bookmarks#index', as: "tag"
+  resources :bookmarks, except: [:show]
+  resources :tags, only: [:index, :show]
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

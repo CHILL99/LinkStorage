@@ -4,7 +4,7 @@ class Bookmark < ActiveRecord::Base
   has_many :bookmark_tag_mappings, dependent: :destroy
   has_many :tags, through: :bookmark_tag_mappings
   
-  validates :content, presence: true
+  validates_presence_of :content
 
   def all_tags=(names)
     self.tags = names.split(",").map do |name|
@@ -13,11 +13,7 @@ class Bookmark < ActiveRecord::Base
   end
 
   def all_tags
-    self.tags.map(&:name).join(", ")
-  end
-
-  def self.tagged_with(name, current_user)
-    Tag.find_by_name!(name).bookmarks.where(user_id: current_user.id)
+    tags.map(&:name).join(", ")
   end
 
 end

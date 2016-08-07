@@ -1,0 +1,23 @@
+.row
+  %table.table
+    %tr
+      %th Bookmark
+      %th Description
+      %th Tags
+      %th Actions
+    - bookmarks.each do |bookmark|
+      %tr
+        %td
+          = link_to "#{bookmark.content}", bookmark.content
+        %td= bookmark.description
+        %td
+          - bookmark.tags.each do |t|
+            = link_to t.name, tag_path(t)
+          = No tags unless bookmark.tags.any?
+        %td
+          = link_to bookmark_path(bookmark), method: :delete, class: 'btn' do
+            %i.glyphicon.glyphicon-remove
+          = link_to edit_bookmark_path(bookmark), class: 'btn' do
+            %i.glyphicon.glyphicon-edit
+  .text-center
+    = link_to 'New Bookmark', new_bookmark_path, class: 'btn btn-primary'

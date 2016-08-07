@@ -1,12 +1,9 @@
 class BookmarksController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :load_bookmark, only: [:edit, :update, :destroy]
   
   def index
-    @bookmarks = if params[:tag]
-      current_user.bookmarks.tagged_with(params[:tag], current_user)
-    else
-      current_user.bookmarks
-    end
+    @bookmarks = current_user.bookmarks
   end
   
   def new
@@ -17,25 +14,24 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.new (bookmark_params)
     @bookmark.user = current_user
     if @bookmark.save
-      redirect_to bookmarks_path
+      redirect_to bookmarks_path, notice: 'Bookmark created'
     else
       render :new
     end
   end
 
   def edit
-    @bookmark = Bookmark.find(params[:id])
-    render :edit
   end
 
   def update
-    @bookmark = Bookmark.find(params[:id])
-    @bookmark.update(bookmark_params)
-    redirect_to bookmarks_path
+    if @bookmark.update(bookmark_params)
+      redirect_to bookmarks_path, notice: 'Bookmark updated'
+    else
+      render :edit
+    end
   end
 
   def destroy
-    @bookmark = Bookmark.find(params[:id])
     @bookmark.destroy
     redirect_to bookmarks_path
   end
@@ -43,5 +39,9 @@ class BookmarksController < ApplicationController
   private
     def bookmark_params
       params.require(:bookmark).permit(:content, :description, :all_tags)
+    end
+
+    def load_bookmark
+      @bookmark = current_user.bookmarks.find(params[:id])
     end
 end
