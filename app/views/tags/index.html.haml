@@ -1,3 +1,4 @@
 %h4 Tags Cloud
 %pre
-  =raw user_tag_links(@users_tag)
+  - @user_tags.each do |t| 
+    %p= link_to t.name, tag_path(t)
