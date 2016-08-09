@@ -10,4 +10,7 @@
       .row
         = render 'layouts/header'
       .row
+        #flash.col-lg-12
+          = flash_message
+      .row
         .col-md-10.col-md-offset-1= yield
