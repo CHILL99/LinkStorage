@@ -15,7 +15,7 @@ RSpec.describe BookmarksController do
       expect(response).to render_template("index")
     end
   end
-  
+
   describe '#new' do
     it 'renders new form' do
       get 'new'
@@ -43,7 +43,7 @@ RSpec.describe BookmarksController do
     end
   
     context 'with invalid params' do
-      let(:params) { {description: Faker::Lorem.paragraph } }
+      let(:params) { { description: Faker::Lorem.paragraph } }
 
       before(:each) do
         post :create, bookmark: params
@@ -60,6 +60,38 @@ RSpec.describe BookmarksController do
       sign_in(bookmark.user)
       get 'edit', { id: bookmark.id }
       expect(response).to be_success
+    end
+  end
+
+  describe "#update" do
+    before do
+      sign_in(bookmark.user)
+      patch :update, id: bookmark.id, bookmark: params
+      bookmark.reload
+    end
+
+    context 'with valid params' do
+      let(:params) { { content: Faker::Internet.url,
+                       description: Faker::Lorem.paragraph,
+                       } }
+
+      it 'redirect to bookmark index page' do
+        expect(response).to redirect_to(authenticated_root_path)
+      end
+
+      it 'updates an bookmark' do
+        expect(bookmark.content).to eql params[:content]
+        expect(flash[:notice]).to eq 'Bookmark successfully updated'
+      end
+    end
+
+    context 'with invalid params' do
+      let(:params) { {  content: ' ', 
+                        description: Faker::Lorem.paragraph } }
+
+      it 'gets flash error message' do
+        expect(flash[:danger]).to eq 'Some errors prohibited this bookmark from being saved'
+      end
     end
   end
   
