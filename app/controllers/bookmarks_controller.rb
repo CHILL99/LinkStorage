@@ -16,6 +16,7 @@ class BookmarksController < ApplicationController
     if @bookmark.save
       redirect_to authenticated_root_path, notice: 'Bookmark successfully created'
     else
+      flash[:danger] = 'Some errors prohibited this bookmark from being saved'
       render :new
     end
   end
@@ -25,9 +26,10 @@ class BookmarksController < ApplicationController
 
   def update
     if @bookmark.update(bookmark_params)
-      redirect_to bookmarks_path, notice: 'Bookmark successfully updated'
+      redirect_to authenticated_root_path, notice: 'Bookmark successfully updated'
     else
-      render :edit, notice: 'Some errors prohibited this bookmark from being saved'
+      flash[:danger] = 'Some errors prohibited this bookmark from being saved'
+      render :edit
     end
   end
 
