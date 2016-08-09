@@ -14,7 +14,7 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.new (bookmark_params)
     @bookmark.user = current_user
     if @bookmark.save
-      redirect_to bookmarks_path, notice: 'Bookmark created'
+      redirect_to authenticated_root_path, notice: 'Bookmark successfully created'
     else
       render :new
     end
@@ -25,9 +25,9 @@ class BookmarksController < ApplicationController
 
   def update
     if @bookmark.update(bookmark_params)
-      redirect_to bookmarks_path, notice: 'Bookmark updated'
+      redirect_to bookmarks_path, notice: 'Bookmark successfully updated'
     else
-      render :edit
+      render :edit, notice: 'Some errors prohibited this bookmark from being saved'
     end
   end
 
