@@ -9,11 +9,11 @@
       %tr
         %td
           = link_to "#{bookmark.content}", bookmark.content
-        %td = bookmark.description
-        %td
+        %td= bookmark.description
+        %td 
           - bookmark.tags.each do |t|
             = link_to t.name, tag_path(t)
-            = No tags unless bookmark.tags.any?
+          = 'No tags' unless bookmark.tags.any?
         %td
           = link_to bookmark_path(bookmark), method: :delete, class: 'btn' do
             %i.glyphicon.glyphicon-remove
