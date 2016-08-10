@@ -1,7 +1,7 @@
 class BookmarksController < ApplicationController
   before_filter :authenticate_user!
   before_filter :load_bookmark, only: [:edit, :update, :destroy]
-  
+
   def index
     @bookmarks = current_user.bookmarks
   end
@@ -11,7 +11,7 @@ class BookmarksController < ApplicationController
   end
 
   def create
-    @bookmark = Bookmark.new (bookmark_params)
+    @bookmark = Bookmark.new(bookmark_params)
     @bookmark.user = current_user
     if @bookmark.save
       redirect_to authenticated_root_path, notice: 'Bookmark successfully created'

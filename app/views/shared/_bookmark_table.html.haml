@@ -9,7 +9,7 @@
       %tr
         %td
           = link_to "#{bookmark.content}", bookmark.content
-        %td= bookmark.description
+        %td = bookmark.description
         %td
           - bookmark.tags.each do |t|
             = link_to t.name, tag_path(t)

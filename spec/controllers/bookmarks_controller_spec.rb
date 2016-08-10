@@ -90,7 +90,7 @@ RSpec.describe BookmarksController do
                         description: Faker::Lorem.paragraph } }
 
       it 'gets flash error message' do
-        expect(flash[:danger]).to eq 'Some errors prohibited this bookmark from being saved'
+        expect(flash[:error]).to eq 'Some errors prohibited this bookmark from being saved'
       end
     end
   end

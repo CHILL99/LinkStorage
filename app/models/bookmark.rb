@@ -1,9 +1,9 @@
 class Bookmark < ActiveRecord::Base
   belongs_to :user
-  
+
   has_many :bookmark_tag_mappings, dependent: :destroy
   has_many :tags, through: :bookmark_tag_mappings
-  
+
   validates_presence_of :content
 
   def all_tags=(names)
