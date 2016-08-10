@@ -1,24 +1,10 @@
 == README
 
-Ruby version
-  2.2.1
-Rails version
-  4.2.6
-Demo
-  http://linkstorage.herokuapp.com/
+<h3>Ruby version</h3>
+  <p>2.2.1</p>
 
+<h3>Rails version</h3>
+  <p>4.2.6</p>
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
+<h3>Demo</h3>
+<p><a href=http://linkstorage.herokuapp.com/">Demo application</a></p>
