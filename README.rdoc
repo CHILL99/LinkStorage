@@ -1,10 +1,10 @@
 == README
 
-<h3>Ruby version</h3>
-  <p>2.2.1</p>
+= Ruby version
+  * 2.2.1
 
-<h3>Rails version</h3>
-  <p>4.2.6</p>
+= Rails version
+  * 4.2.6
 
-<h3>Demo</h3>
-<p><a href=http://linkstorage.herokuapp.com/">Demo application</a></p>
+= Demo
+Demo application http://linkstorage.herokuapp.com/
