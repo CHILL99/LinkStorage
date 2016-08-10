@@ -1,5 +1,5 @@
 module ApplicationHelper
-  FLASH_TYPE = { alert: "danger", notice: "success"}
+  FLASH_TYPE = { error: "danger", notice: "success"}
 
   def flash_message
     flash.map do |key, msg|
