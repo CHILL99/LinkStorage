@@ -7,4 +7,4 @@
   4.2.6
 
 = Demo
-Demo application http://linkstorage.herokuapp.com
+  Demo application http://linkstorage.herokuapp.com
