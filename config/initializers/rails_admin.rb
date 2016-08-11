@@ -1,6 +1,9 @@
 RailsAdmin.config do |config|
   config.authorize_with do |controller|
-    redirect_to '/' unless current_user.try(:admin?)
+    unless current_user.try(:admin?)
+      redirect_to '/'
+      flash[:error] = "You are not an admin"
+    end
   end
   config.excluded_models << "BookmarkTagMapping"
   config.current_user_method(&:current_user)
